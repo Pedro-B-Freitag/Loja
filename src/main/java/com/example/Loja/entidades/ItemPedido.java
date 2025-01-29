@@ -22,12 +22,11 @@ public class ItemPedido {
         this.preco = preco;
         this.quantidade = quantidade;
     }
-
+    @JsonIgnore
     public Pedido getPedido() {
         return id.getPedido();
     }
 
-    @JsonIgnore
     public void setPedido(Pedido pedido) {
         id.setPedido(pedido);
     }
