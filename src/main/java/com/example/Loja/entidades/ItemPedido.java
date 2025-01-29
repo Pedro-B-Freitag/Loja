@@ -22,6 +22,10 @@ public class ItemPedido {
         this.preco = preco;
         this.quantidade = quantidade;
     }
+    /*
+        colocamos o JsonIgnore porque, ao chamar um pedido com um getPedido, o pedido chamava outro itemPedido
+        que chamava outro getPedido e assim continuava sem parar.
+     */
     @JsonIgnore
     public Pedido getPedido() {
         return id.getPedido();
