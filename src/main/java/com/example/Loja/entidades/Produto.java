@@ -1,6 +1,10 @@
 package com.example.Loja.entidades;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Produto{
@@ -12,6 +16,9 @@ public class Produto{
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Categoria categoria;
+
+    @OneToMany(mappedBy = "id.produto")
+    private Set<ItemPedido> itens = new HashSet<>();
 
     public Produto(){
     }
@@ -53,6 +60,15 @@ public class Produto{
 
     public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
+    }
+
+    @JsonIgnore
+    public Set<Pedido> getPedidos() {
+        Set<Pedido> pedidos = new HashSet<>();
+        for (ItemPedido item : itens) {
+            pedidos.add(item.getPedido());
+        }
+        return pedidos;
     }
 
     @Override
