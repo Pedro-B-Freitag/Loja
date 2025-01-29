@@ -3,7 +3,9 @@ package com.example.Loja.entidades;
 import jakarta.persistence.*;
 
 import java.time.Instant;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 public class Pedido {
@@ -15,6 +17,10 @@ public class Pedido {
     @ManyToOne
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
+
+
+    @OneToMany(mappedBy = "id.pedido")
+    private Set<ItemPedido> itens = new HashSet<>();
 
     public Pedido() {}
 
@@ -55,6 +61,10 @@ public class Pedido {
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
+    }
+
+    public Set<ItemPedido> getItens() {
+        return itens;
     }
 
     @Override

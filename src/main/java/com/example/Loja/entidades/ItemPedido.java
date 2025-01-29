@@ -1,6 +1,7 @@
 package com.example.Loja.entidades;
 
 import com.example.Loja.entidades.primaryKeys.ItemPedidoPK;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 
@@ -9,7 +10,7 @@ import java.util.Objects;
 @Entity
 public class ItemPedido {
     @EmbeddedId
-    private ItemPedidoPK id;
+    private ItemPedidoPK id = new ItemPedidoPK();
     private Double preco;
     private int quantidade;
 
@@ -26,6 +27,7 @@ public class ItemPedido {
         return id.getPedido();
     }
 
+    @JsonIgnore
     public void setPedido(Pedido pedido) {
         id.setPedido(pedido);
     }
