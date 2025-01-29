@@ -1,5 +1,6 @@
 package com.example.Loja.entidades;
 
+import com.example.Loja.enums.StatusPedido;
 import jakarta.persistence.*;
 
 import java.time.Instant;
@@ -13,7 +14,7 @@ public class Pedido {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Instant momento;
-    private String status;
+    private Integer status;
     @ManyToOne
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
@@ -23,10 +24,10 @@ public class Pedido {
 
     public Pedido() {}
 
-    public Pedido(Long id, Instant momento, String status, Usuario usuario) {
+    public Pedido(Long id, Instant momento, StatusPedido status, Usuario usuario) {
         this.id = id;
         this.momento = momento;
-        this.status = status;
+        setStatus(status);
         this.usuario = usuario;
     }
 
@@ -46,12 +47,14 @@ public class Pedido {
         this.momento = momento;
     }
 
-    public String getStatus() {
-        return status;
+    public StatusPedido getStatus() {
+        return StatusPedido.valueOf(status);
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setStatus(StatusPedido statusPedido) {
+        if(statusPedido != null) {
+            this.status = statusPedido.ordinal();
+        }
     }
 
     public Usuario getUsuario() {
