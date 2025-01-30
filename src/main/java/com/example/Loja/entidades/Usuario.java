@@ -15,7 +15,7 @@ public class Usuario {
     private String senha;
     private String telefone;
 
-    @OneToMany(mappedBy = "usuario")
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
     private List<Pedido> pedidos = new ArrayList<>();
 
     public Usuario(){
