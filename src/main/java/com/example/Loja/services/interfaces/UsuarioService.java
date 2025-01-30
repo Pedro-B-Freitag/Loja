@@ -10,4 +10,5 @@ public interface UsuarioService {
     Usuario findById(Long id);
     void save(Usuario usuario);
     void delete(Long id);
+    Usuario update(Long id,Usuario usuario);
 }
