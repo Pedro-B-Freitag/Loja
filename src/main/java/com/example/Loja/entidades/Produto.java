@@ -3,18 +3,22 @@ package com.example.Loja.entidades;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-public class Produto{
+public class Produto implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
     private Double valor;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
+    @JoinColumn(name = "categoria_id")
     private Categoria categoria;
 
     @OneToMany(mappedBy = "id.produto")
@@ -23,11 +27,10 @@ public class Produto{
     public Produto(){
     }
 
-    public Produto(Long id, String nome, Double valor, Categoria categoria) {
+    public Produto(Long id, String nome, Double valor) {
         this.id = id;
         this.nome = nome;
         this.valor = valor;
-        this.categoria = categoria;
     }
 
     public Long getId() {

@@ -4,10 +4,11 @@ import com.example.Loja.entidades.Pagamento;
 import com.example.Loja.repositorios.PagamentoRepository;
 import com.example.Loja.services.interfaces.PagamentoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-
+@Service
 public class PagamentoServiceImpl implements PagamentoService {
 
     @Autowired

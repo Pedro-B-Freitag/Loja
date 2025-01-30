@@ -3,10 +3,11 @@ package com.example.Loja.services;
 import com.example.Loja.entidades.Usuario;
 import com.example.Loja.services.interfaces.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-
+@Service
 public class UsuarioServiceImpl implements UsuarioService {
 
     @Autowired

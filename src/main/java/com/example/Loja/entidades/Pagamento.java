@@ -1,26 +1,40 @@
 package com.example.Loja.entidades;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 
+import java.io.Serializable;
 import java.time.Instant;
 import java.util.Objects;
 
 @Entity
-public class Pagamento {
+public class Pagamento implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Instant momento;
 
+    @JsonIgnore
+    @OneToOne
+    @MapsId
+    private Pedido pedido;
+
     public Pagamento() {}
 
-    public Pagamento(Long id, Instant momento) {
+    public Pagamento(Long id, Instant momento, Pedido pedido) {
         this.id = id;
         this.momento = momento;
+        this.pedido = pedido;
+    }
+
+    public Pedido getPedido() {
+        return pedido;
+    }
+
+    public void setPedido(Pedido pedido) {
+        this.pedido = pedido;
     }
 
     public Instant getMomento() {

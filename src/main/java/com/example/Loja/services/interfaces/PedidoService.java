@@ -1,10 +1,10 @@
 package com.example.Loja.services.interfaces;
 
-import com.example.Loja.entidades.Categoria;
 import com.example.Loja.entidades.Pedido;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public interface PedidoService {
     List<Pedido> findAll();
     Pedido findById(Long id);

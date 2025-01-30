@@ -3,10 +3,11 @@ package com.example.Loja.services;
 import com.example.Loja.entidades.Pedido;
 import com.example.Loja.services.interfaces.PedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-
+@Service
 public class PedidoServiceImpl implements PedidoService {
 
     @Autowired

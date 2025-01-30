@@ -1,4 +1,4 @@
-package com.example.Loja.enums;
+package com.example.Loja.entidades.enums;
 
 public enum StatusPedido {
 

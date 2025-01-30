@@ -1,12 +1,15 @@
 package com.example.Loja.entidades;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Usuario {
+public class Usuario implements Serializable {
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -15,20 +18,20 @@ public class Usuario {
     private String senha;
     private String telefone;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
     private List<Pedido> pedidos = new ArrayList<>();
 
     public Usuario(){
     }
 
-    public Usuario(Long id, String nome, String email, String senha, String telefone, Pedido pedido) {
+    public Usuario(Long id, String nome, String email, String senha, String telefone) {
         this.id = id;
         this.nome = nome;
         this.email = email;
         this.senha = senha;
         this.telefone = telefone;
     }
-
     public List<Pedido> getPedidos() {
         return pedidos;
     }
@@ -42,9 +45,7 @@ public class Usuario {
     public String getEmail() {
         return email;
     }
-    public String getSenha() {
-        return senha;
-    }
+    public String getSenha() { return senha; }
     public String getTelefone() {
         return telefone;
     }
