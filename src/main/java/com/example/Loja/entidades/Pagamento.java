@@ -1,5 +1,6 @@
 package com.example.Loja.entidades;
 
+import com.example.Loja.entidades.enums.StatusPedido;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
@@ -27,6 +28,7 @@ public class Pagamento implements Serializable {
         this.id = id;
         this.momento = momento;
         this.pedido = pedido;
+        this.pedido.setStatus(StatusPedido.PAGO);
     }
 
     public Pedido getPedido() {

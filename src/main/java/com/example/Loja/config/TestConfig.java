@@ -86,5 +86,9 @@ public class TestConfig implements CommandLineRunner {
 
         // Salvando o pedido com pagamento
         pedidoRepository.save(ped1);
+
+        Pagamento pag2 = new Pagamento(null, Instant.now(), ped2);
+        ped2.setPagamento(pag2);
+        pedidoRepository.save(ped2);
     }
 }
