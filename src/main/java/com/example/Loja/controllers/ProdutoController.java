@@ -2,6 +2,7 @@ package com.example.Loja.controllers;
 
 import com.example.Loja.entidades.Produto;
 import com.example.Loja.repositorios.ProdutoRepository;
+import com.example.Loja.services.ProdutoServiceImpl;
 import com.example.Loja.services.interfaces.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +19,7 @@ import java.util.Optional;
 public class ProdutoController {
 
     @Autowired
-    private ProdutoService produtoService;
+    private ProdutoServiceImpl produtoService;
     
     @GetMapping
     public List<Produto> listar() {

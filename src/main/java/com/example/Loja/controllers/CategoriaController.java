@@ -2,6 +2,7 @@ package com.example.Loja.controllers;
 
 import com.example.Loja.entidades.Categoria;
 import com.example.Loja.repositorios.CategoriaRepository;
+import com.example.Loja.services.CategoriaServiceImpl;
 import com.example.Loja.services.interfaces.CategoriaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +18,7 @@ import java.util.Optional;
 @RequestMapping(value = "/categorias")
 public class CategoriaController {
     @Autowired
-    private CategoriaService categoriaService;
+    private CategoriaServiceImpl categoriaService;
 
     @GetMapping
     public List<Categoria> listar() {

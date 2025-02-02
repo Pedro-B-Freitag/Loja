@@ -2,6 +2,7 @@ package com.example.Loja.controllers;
 
 import com.example.Loja.entidades.Pedido;
 import com.example.Loja.repositorios.PedidoRepository;
+import com.example.Loja.services.PedidoServiceImpl;
 import com.example.Loja.services.interfaces.PedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +16,7 @@ import java.util.Optional;
 public class PedidoController {
 
     @Autowired
-    private PedidoService pedidoService;
+    private PedidoServiceImpl pedidoService;
 
     @GetMapping
     public List<Pedido> listar() {
