@@ -19,23 +19,23 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     public List<Usuario> findAll() {
-        return UsuarioRepository.findAll();
+        return usuarioRepository.findAll();
     }
 
     @Override
     public Usuario findById(Long id) {
-        Optional<Usuario> Usuario = UsuarioRepository.findById(id);
+        Optional<Usuario> Usuario = usuarioRepository.findById(id);
         return Usuario.get();
     }
 
     @Override
     public void save(Usuario Usuario) {
-        UsuarioRepository.save(Usuario);
+        usuarioRepository.save(Usuario);
     }
 
     @Override
     public void delete(Long id) {
-        UsuarioRepository.deleteById(id);
+        usuarioRepository.deleteById(id);
     }
 
     @Override

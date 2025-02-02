@@ -2,7 +2,6 @@ package com.example.Loja.controllers;
 
 import com.example.Loja.entidades.Usuario;
 import com.example.Loja.services.UsuarioServiceImpl;
-import com.example.Loja.services.interfaces.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

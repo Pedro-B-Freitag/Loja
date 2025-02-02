@@ -31,4 +31,18 @@ public class ProdutoServiceImpl implements ProdutoService{
     public void delete(Long id){
         produtoRepository.deleteById(id);
     }
+
+    @Override
+    public Produto update(Long id, Produto produto) {
+        Produto entidade = produtoRepository.getReferenceById(id);
+        updateDados(entidade, produto);
+        return produtoRepository.save(entidade);
+    }
+
+    public void updateDados(Produto entidade, Produto produto){
+        entidade.setNome(produto.getNome());
+        entidade.setCategoria(produto.getCategoria());
+        entidade.setValor(produto.getValor());
+    }
 }
+

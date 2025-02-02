@@ -13,26 +13,39 @@ public class PagamentoServiceImpl implements PagamentoService {
 
     @Autowired
     private PagamentoRepository PagamentoRepository;
+    @Autowired
+    private PagamentoRepository pagamentoRepository;
 
     @Override
     public List<Pagamento> findAll() {
-        return PagamentoRepository.findAll();
+        return pagamentoRepository.findAll();
     }
 
     @Override
     public Pagamento findById(Long id) {
-        Optional<Pagamento> Pagamento = PagamentoRepository.findById(id);
+        Optional<Pagamento> Pagamento = pagamentoRepository.findById(id);
         return Pagamento.get();
     }
 
     @Override
     public void save(Pagamento Pagamento) {
-        PagamentoRepository.save(Pagamento);
+        pagamentoRepository.save(Pagamento);
     }
 
     @Override
     public void delete(Long id) {
-        PagamentoRepository.deleteById(id);
+        pagamentoRepository.deleteById(id);
     }
-    
+
+    @Override
+    public Pagamento update(Long id, Pagamento pagamento) {
+        Pagamento entidade = pagamentoRepository.getReferenceById(id);
+        updateDados(entidade, pagamento);
+        return pagamentoRepository.save(entidade);
+    }
+
+    public void updateDados(Pagamento entidade, Pagamento pagamento){
+        entidade.setMomento(pagamento.getMomento());
+    }
+
 }

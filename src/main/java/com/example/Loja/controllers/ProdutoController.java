@@ -1,15 +1,10 @@
 package com.example.Loja.controllers;
 
 import com.example.Loja.entidades.Produto;
-import com.example.Loja.repositorios.ProdutoRepository;
 import com.example.Loja.services.ProdutoServiceImpl;
-import com.example.Loja.services.interfaces.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -30,5 +25,24 @@ public class ProdutoController {
     public ResponseEntity <Produto> buscar(@PathVariable Long id) {
         Optional<Produto> produto = Optional.ofNullable(produtoService.findById(id));
         return ResponseEntity.ok().body(produto.get());
+    }
+
+    @PostMapping
+    public ResponseEntity<Produto> salvar(@RequestBody Produto produto) {
+        produtoService.save(produto);
+        return ResponseEntity.ok().body(produto);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> remover(@PathVariable Long id) {
+        produtoService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Produto> atualizar(@RequestBody Produto produto,
+                                            @PathVariable Long id) {
+        produto = produtoService.update(id,produto);
+        return ResponseEntity.ok().body(produto);
     }
 }

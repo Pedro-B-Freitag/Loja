@@ -10,5 +10,5 @@ public interface ItemPedidoService {
     List<ItemPedido> findAll();
     ItemPedido findById(ItemPedidoPK id);
     void save(ItemPedido itemPedido);
-    void delete(ItemPedido itemPedido);
+    void delete(ItemPedidoPK id);
 }

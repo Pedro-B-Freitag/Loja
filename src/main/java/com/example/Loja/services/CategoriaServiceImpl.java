@@ -34,4 +34,16 @@ public class CategoriaServiceImpl implements CategoriaService {
     public void delete(Long id) {
         categoriaRepository.deleteById(id);
     }
+
+    @Override
+    public Categoria update(Long id, Categoria categoria) {
+        Categoria entidade = categoriaRepository.getReferenceById(id);
+        updateDados(entidade, categoria);
+        return categoriaRepository.save(entidade);
+    }
+
+    public void updateDados(Categoria entidade, Categoria categoria){
+        entidade.setNome(categoria.getNome());
+    }
+
 }

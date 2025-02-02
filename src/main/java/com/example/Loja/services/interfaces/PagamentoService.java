@@ -10,4 +10,5 @@ public interface PagamentoService {
     Pagamento findById(Long id);
     void save(Pagamento pagamento);
     void delete(Long id);
+    Pagamento update(Long id,Pagamento pagamento);
 }
