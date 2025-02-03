@@ -1,5 +1,6 @@
 package com.example.Loja.services.interfaces;
 
+import com.example.Loja.entidades.DTOs.ItemPedidoDTO;
 import com.example.Loja.entidades.ItemPedido;
 import com.example.Loja.entidades.primaryKeys.ItemPedidoPK;
 import org.springframework.stereotype.Service;
@@ -11,4 +12,5 @@ public interface ItemPedidoService {
     ItemPedido findById(ItemPedidoPK id);
     void save(ItemPedido itemPedido);
     void delete(ItemPedidoPK id);
+    ItemPedido converter(ItemPedidoDTO itemPedidoDTO);
 }
