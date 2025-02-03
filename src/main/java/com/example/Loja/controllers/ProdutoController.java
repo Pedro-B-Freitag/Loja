@@ -20,6 +20,11 @@ public class ProdutoController {
     public List<Produto> listar() {
         return produtoService.findAll();
     }
+
+    @GetMapping("/order")
+    public List<Produto> listarOrdenado() {
+        return produtoService.findAllInOrder();
+    }
     
     @GetMapping(value = "/{id}")
     public ResponseEntity <Produto> buscar(@PathVariable Long id) {
