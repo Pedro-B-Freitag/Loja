@@ -3,7 +3,9 @@ package com.example.Loja.services;
 import com.example.Loja.entidades.Categoria;
 import com.example.Loja.entidades.Pagamento;
 import com.example.Loja.entidades.Pedido;
+import com.example.Loja.entidades.enums.StatusPedido;
 import com.example.Loja.repositorios.CategoriaRepository;
+import com.example.Loja.repositorios.PedidoRepository;
 import com.example.Loja.repositorios.UsuarioRepository;
 import com.example.Loja.services.interfaces.PedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,17 +17,16 @@ import java.util.Optional;
 public class PedidoServiceImpl implements PedidoService {
 
     @Autowired
-    private com.example.Loja.repositorios.PedidoRepository PedidoRepository;
+    private PedidoRepository pedidoRepository;
     @Autowired
     private UsuarioRepository usuarioRepository;
-    @Autowired
-    private com.example.Loja.repositorios.PedidoRepository pedidoRepository;
+
     @Autowired
     private CategoriaRepository categoriaRepository;
 
     @Override
     public List<Pedido> findAll() {
-        return PedidoRepository.findAll();
+        return pedidoRepository.findAll();
     }
 
     @Override
@@ -35,8 +36,11 @@ public class PedidoServiceImpl implements PedidoService {
     }
 
     @Override
-    public void save(Pedido Pedido) {
-        pedidoRepository.save(Pedido);
+    public void save(Pedido pedido) {
+        if(pedido.getStatus() == null){
+            pedido.setStatus(StatusPedido.ESPERANDO_PAGAMENTO);
+        }
+        pedidoRepository.save(pedido);
     }
 
     @Override

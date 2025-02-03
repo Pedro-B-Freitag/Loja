@@ -22,13 +22,18 @@ public class Pagamento implements Serializable {
     @MapsId
     private Pedido pedido;
 
+    @ManyToOne
+    @JoinColumn(name = "meio_pagamento_id")
+    private MeioPagamento meioPagamento;
+
     public Pagamento() {}
 
-    public Pagamento(Long id, Instant momento, Pedido pedido) {
+    public Pagamento(Long id, Instant momento, Pedido pedido, MeioPagamento meioPagamento) {
         this.id = id;
         this.momento = momento;
         this.pedido = pedido;
         this.pedido.setStatus(StatusPedido.PAGO);
+        this.meioPagamento = meioPagamento;
     }
 
     public Pedido getPedido() {
@@ -53,6 +58,14 @@ public class Pagamento implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public MeioPagamento getMeioPagamento() {
+        return meioPagamento;
+    }
+
+    public void setMeioPagamento(MeioPagamento meioPagamento) {
+        this.meioPagamento = meioPagamento;
     }
 
     @Override

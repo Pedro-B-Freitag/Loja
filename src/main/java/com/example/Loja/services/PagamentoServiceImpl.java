@@ -1,11 +1,18 @@
 package com.example.Loja.services;
 
+import com.example.Loja.entidades.DTOs.PagamentoDTO;
+import com.example.Loja.entidades.MeioPagamento;
 import com.example.Loja.entidades.Pagamento;
+import com.example.Loja.entidades.Pedido;
+import com.example.Loja.repositorios.MeioPagamentoRepository;
 import com.example.Loja.repositorios.PagamentoRepository;
+import com.example.Loja.repositorios.PedidoRepository;
 import com.example.Loja.services.interfaces.PagamentoService;
+import com.example.Loja.services.interfaces.PedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 @Service
@@ -15,6 +22,12 @@ public class PagamentoServiceImpl implements PagamentoService {
     private PagamentoRepository PagamentoRepository;
     @Autowired
     private PagamentoRepository pagamentoRepository;
+    @Autowired
+    private PedidoService pedidoService;
+    @Autowired
+    private PedidoRepository pedidoRepository;
+    @Autowired
+    private MeioPagamentoRepository meioPagamentoRepository;
 
     @Override
     public List<Pagamento> findAll() {
@@ -28,8 +41,11 @@ public class PagamentoServiceImpl implements PagamentoService {
     }
 
     @Override
-    public void save(Pagamento Pagamento) {
-        pagamentoRepository.save(Pagamento);
+    public void save(PagamentoDTO pagamentoDTO) {
+        Optional<Pedido> pedido = pedidoRepository.findById(pagamentoDTO.getIdPedido());
+        Optional<MeioPagamento> meioPagamento = meioPagamentoRepository.findById(pagamentoDTO.getIdMeioPagamento());
+        Pagamento pagamento = new Pagamento(null,Instant.now(),pedido.get(),meioPagamento.get());
+        pagamentoRepository.save(pagamento);
     }
 
     @Override

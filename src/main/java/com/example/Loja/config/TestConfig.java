@@ -28,6 +28,8 @@ public class TestConfig implements CommandLineRunner {
 
     @Autowired
     private ItemPedidoRepository itemPedidoRepository;
+    @Autowired
+    private MeioPagamentoRepository meioPagamentoRepository;
 
     @Override
     public void run(String... args) throws Exception {
@@ -80,15 +82,22 @@ public class TestConfig implements CommandLineRunner {
         // Salvando os itens de pedido
         itemPedidoRepository.saveAll(Arrays.asList(ip1, ip2, ip3, ip4));
 
+        MeioPagamento mpag1 = new MeioPagamento(null,"Cartão de Crédito");
+        meioPagamentoRepository.save(mpag1);
+
         // Criação do pagamento
-        Pagamento pag1 = new Pagamento(null, Instant.parse("2019-06-20T21:53:07Z"), ped1);
+        Pagamento pag1 = new Pagamento(null, Instant.parse("2019-06-20T21:53:07Z"), ped1, mpag1);
+
         ped1.setPagamento(pag1);
 
         // Salvando o pedido com pagamento
         pedidoRepository.save(ped1);
 
-        Pagamento pag2 = new Pagamento(null, Instant.now(), ped2);
+        Pagamento pag2 = new Pagamento(null, Instant.now(), ped2, mpag1);
         ped2.setPagamento(pag2);
         pedidoRepository.save(ped2);
+
+
+
     }
 }
