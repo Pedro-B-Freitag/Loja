@@ -13,6 +13,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+
 @Service
 public class PedidoServiceImpl implements PedidoService {
 
@@ -53,6 +55,13 @@ public class PedidoServiceImpl implements PedidoService {
         Pedido entidade = pedidoRepository.getReferenceById(id);
         updateDados(entidade, pedido);
         return pedidoRepository.save(entidade);
+    }
+
+    @Override
+    public List<Pedido> findByUsuarioId(Long idUsuario) {
+        return findAll().stream()
+                .filter(pedido -> pedido.getUsuario().getId() == idUsuario)
+                .collect(Collectors.toList());
     }
 
     public void updateDados(Pedido entidade, Pedido pedido){

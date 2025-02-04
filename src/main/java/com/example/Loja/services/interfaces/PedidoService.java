@@ -11,4 +11,5 @@ public interface PedidoService {
     void save(Pedido pedido);
     void delete(Long id);
     Pedido update(Long id, Pedido pedido);
+    List<Pedido> findByUsuarioId(Long usuarioId);
 }

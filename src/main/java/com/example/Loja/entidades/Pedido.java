@@ -38,6 +38,7 @@ public class Pedido implements Serializable {
         this.usuario = usuario;
     }
 
+
     public Double getTotalPedido(){
         double total = 0.0;
         for(ItemPedido item:itens){

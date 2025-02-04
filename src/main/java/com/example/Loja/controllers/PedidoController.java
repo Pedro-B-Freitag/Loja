@@ -32,6 +32,10 @@ public class PedidoController {
         Optional<Pedido> pedido = Optional.ofNullable(pedidoService.findById(id));
         return ResponseEntity.ok().body(pedido.get());
     }
+    @GetMapping(value="/usuario/{idUsuario}")
+    public List<Pedido> buscarPorIdUsuario(@PathVariable Long idUsuario) {
+        return pedidoService.findByUsuarioId(idUsuario);
+    }
 
     @PostMapping("/{idUsuario}")
     public ResponseEntity<Pedido> salvar(@PathVariable Long idUsuario) {
